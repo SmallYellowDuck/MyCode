@@ -25,6 +25,7 @@ public class MyAsytask extends AsyncTask<String,Integer,String> {
     private Context context;
     private ListView lv;
     private List<Mybean.ListBean> mList;
+    private Mybase mMybase;
 
     public MyAsytask(Context context, ListView lv) {
         this.context = context;
@@ -66,20 +67,19 @@ public class MyAsytask extends AsyncTask<String,Integer,String> {
         }else{
             Mybean mybean = (Mybean) new MyGsonUtils(s, Mybean.class).jsonToGson();
             mList = mybean.getList();
-            final Mybase mybase = new Mybase(context, mList);
-            lv.setAdapter(mybase);
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(context, mList.get(position).getId(),Toast.LENGTH_SHORT);
-
-                }
-            });
+            mMybase = new Mybase(context, mList);
+            lv.setAdapter(mMybase);
+           lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+               @Override
+               public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                   Toast.makeText(context,"我改一下看看",Toast.LENGTH_SHORT).show();
+               }
+           });
             lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     mList.remove(position);
-                    mybase.notifyDataSetChanged();
+                    mMybase.notifyDataSetChanged();
                     return true;
                 }
             });

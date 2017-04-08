@@ -41,7 +41,7 @@ public class Mybase extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder vh;
-        if(convertView!=null){
+        if(convertView==null){
             vh=new ViewHolder();
             convertView=convertView.inflate(context,R.layout.listview,null);
             vh.tv1= (TextView) convertView.findViewById(R.id.lvtv);

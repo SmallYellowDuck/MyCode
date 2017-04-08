@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv= (ListView) findViewById(R.id.lv);
-        MyAsytask myAsytask = new MyAsytask(this, lv);
+        MyAsytask myAsytask = new MyAsytask(MainActivity.this, lv);
         myAsytask.execute(Mypath.url);
     }
 }
